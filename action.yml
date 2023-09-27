@@ -1,5 +1,5 @@
 name: "SecDim Sandbox SARIF Parser"
-description: "Parses SARIF files and links to relevant SecDim Sandboxes."
+description: "Parses SARIF files and populates with links to relevant SecDim Sandboxes."
 author: "SecDim"
 inputs:
   input_sarif_file:
@@ -16,3 +16,6 @@ runs:
   args:
     - ${{ inputs.input_sarif_file }}
     - ${{ inputs.output_sarif_file }}
+branding:
+  icon: "box"
+  color: "gray-dark"
