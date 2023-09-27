@@ -1,0 +1,18 @@
+name: "SecDim Sandbox SARIF Parser"
+description: "Add SecDim Sandbox information to SARIF files, providing names of security vulnerability and links to relevant SecDim Sandbox environments to explore."
+author: "SecDim"
+inputs:
+  input_sarif_file:
+    description: "Relative location of SARIF file to process"
+    required: true
+    default: "./findings.sarif"
+  output_sarif_file:
+    description: "Relative destination location for processed SARIF file"
+    required: true
+    default: "./findings.processed.sarif"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.input_sarif_file }}
+    - ${{ inputs.output_sarif_file }}
