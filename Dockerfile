@@ -1,15 +1,9 @@
-FROM golang:1.21-alpine
+FROM alpine:3.16.2
 
-LABEL vendor="SecDim" \
-    copyright="Security Dimension Pty Ltd. All rights reserved" \
-    description="SecDim Sandbox Sarrif Parser" \
-    version="1.0.0"
-
-WORKDIR /app
-RUN git clone https://github.com/secdim/sandbox-action.git
-COPY . .
-RUN go build -o sandbox
+ADD https://github.com/secdim/sandbox-sarif-parser/releases/download/v0.1-beta/sandbox-linux-amd64 .
+RUN install sandbox-linux-amd64 /usr/local/bin/sandbox
 
 COPY entrypoint.sh /entrypoint.sh
+
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
