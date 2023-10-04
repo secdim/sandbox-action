@@ -18,4 +18,4 @@ runs:
     - ${{ inputs.output_sarif_file }}
 branding:
   icon: "box"
-  color: "gray-dark"
+  color: "blue"
