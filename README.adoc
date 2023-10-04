@@ -37,13 +37,18 @@ jobs:
       - name: Run Semgrep
         run: semgrep scan --config auto --sarif > findings.sarif
 
+      - name: Upload Semgrep SARIF results
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: findings.sarif
+
       - name: Run SecDim Sandbox Action
-        uses: secdim/sandbox-action@v0.1.0
+        uses: secdim/sandbox-action@v0.1.6-beta
         with:
           input_sarif_file: findings.sarif
           output_sarif_file: findings.processed.sarif
 
-      - name: Upload SARIF results
+      - name: Upload SecDim Sanbox SARIF results
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: findings.processed.sarif
