@@ -1,6 +1,6 @@
 FROM debian:12-slim
 
-ADD https://github.com/secdim/sandbox-sarif-parser/releases/download/v0.1.4-beta/sandbox-linux-amd64 .
+ADD https://github.com/secdim/sandbox-sarif-parser/releases/latest/download/sandbox-linux-amd64 .
 RUN apt-get update \
     && apt-get install -y --no-install-recommends ca-certificates \
     && install sandbox-linux-amd64 /usr/local/bin/sandbox \
