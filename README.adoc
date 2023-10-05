@@ -1,8 +1,8 @@
-= SecDim Sandbox Action
+= SecDim Sandbox
 
 == Description
 
-This Github Action will take a SARIF file, search https://secdim.com/[SecDim] for the relevant vulnerability sandboxes, and upload a new SARIF file detailing the vulnerabilities with links to the relevant https://play.secdim.com/sandbox/[SecDim Sandboxes] to explore. The results can be viewed in the repository's Security tab.
+This Github Action will take a SARIF file, search https://secdim.com/[SecDim] for the relevant vulnerability SecDim Sandbox, and upload a new SARIF file detailing the vulnerabilities with links to the relevant https://play.secdim.com/sandbox/[SecDim Sandbox] to explore. The results can be viewed in the repository's Security tab.
 
 Of note, none of your code is uploaded to SecDim. The SARIF file rule section is parsed for relevant search terms, and only these search terms are used to interact with SecDim APIs. To see more information, see our https://github.com/secdim/sandbox-sarif-parser[Sandbox SARIF Parser].
 
