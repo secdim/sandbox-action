@@ -1,18 +1,19 @@
 = SecDim Sandbox
 
-image::images/security-tab-screenshot.png[] 
-image::images/code-scanning-alert-screenshot.png[] 
-image::images/secdim-sandbox-result-screenshot.png[] 
+SecDim Sandbox is a Cloud Development Environment where you can explore a real vulnerability in a cloud native app. Each Sandbox comes with a security test suit to simulate the exploitation of the vulnerability. This can help you to debug and verify if your security patch can remediate the vulnerability.
+
+image::images/secdim-sandbox-cloud.png[]
+
+image:images/secdim-sandbx-github-action-security-tab.png[width=49%]
+image:images/code-scanning-alert-screenshot.png[width=49%] 
 
 == Description
 
-This Github Action will take a SARIF file, search https://secdim.com/[SecDim] for the relevant vulnerability SecDim Sandbox, and upload a new SARIF file detailing the vulnerabilities with links to the relevant https://play.secdim.com/sandbox/[SecDim Sandbox] to explore. The results can be viewed in the repository's Security tab.
+This Github Action will take a SARIF file, search https://play.secdim.com/sandbox[SecDim Sandbox] for the relevant Sandbox, and upload a new SARIF file detailing the vulnerabilities with links to the relevant https://play.secdim.com/sandbox/[SecDim Sandbox]. The results can be viewed in the repository's Security tab.
 
-Of note, none of your code is uploaded to SecDim. The SARIF file rule section is parsed for relevant search terms, and only these search terms are used to interact with SecDim APIs. To see more information, see our https://github.com/secdim/sandbox-sarif-parser[Sandbox SARIF Parser].
+See an example of using this Github Action with Semgrep: https://github.com/secdim/sandbox-semgrep-example[Integrating Semgrep with SecDim Sandbox]
 
-See https://github.com/secdim/sandbox-semgrep-example[our example repository] to see it in action. This repository will be scanned by Semgrep and output a SARIF file. This SARIF file is then process by our https://github.com/secdim/sandbox-sarif-parser[Sandbox SARIF Parser], with the results uploaded to the repository so you can view them in the repository's Security tab. Feel free to clone the repository and try it out yourself.
-
-Alternatively, the YAML workflow file from https://github.com/secdim/sandbox-semgrep-example[the example repository] is included below:
+An example YAML workflow file is also included below:
 
 ```yaml
 name: SecDim Sandbox Example Workflow
@@ -50,7 +51,7 @@ jobs:
           category: semgrep
 
       - name: Run SecDim Sandbox Action
-        uses: secdim/sandbox-action@v0.1.7-beta
+        uses: secdim/sandbox-action@v1.0.0
         with:
           input_sarif_file: findings.sarif
           output_sarif_file: findings.processed.sarif
@@ -61,3 +62,8 @@ jobs:
           sarif_file: findings.processed.sarif
           category: secdim-sandbox 
 ```
+
+== Your Privacy and Security
+
+Your code is not send to SecDim APIs. The SARIF file rule section is parsed for relevant search terms (e.g. CWE ids), and only these search terms are queries on SecDim API. No information about the origin is sent to SecDim. 
+To learn more, checkout https://github.com/secdim/sandbox-sarif-parser[SecDim Sandbox SARIF Parser] repository.

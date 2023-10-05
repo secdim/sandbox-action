@@ -1,5 +1,5 @@
-name: "SecDim Sandbox SARIF Parser"
-description: "Parses SARIF files and populates with links to relevant SecDim Sandboxes."
+name: "SecDim Sandbox"
+description: "Parses SARIF files and populates with links to relevant SecDim Sandboxes where you can explore and debug your security patch."
 author: "SecDim"
 inputs:
   input_sarif_file:
