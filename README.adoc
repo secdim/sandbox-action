@@ -2,10 +2,12 @@
 
 SecDim Sandbox is a Cloud Development Environment where you can explore a real vulnerability in a cloud native app. Each Sandbox comes with a security test suit to simulate the exploitation of the vulnerability. This can help you to debug and verify if your security patch can remediate the vulnerability.
 
+You can run, test and debug the application and get assistance from SecDim's AI powered code assistant.
+
 image::images/secdim-sandbox-cloud.png[]
 
 image:images/secdim-sandbx-github-action-security-tab.png[width=49%]
-image:images/code-scanning-alert-screenshot.png[width=49%] 
+image:images/code-scanning-alert-screenshot.png[width=49%]
 
 == Description
 
@@ -60,10 +62,10 @@ jobs:
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: findings.processed.sarif
-          category: secdim-sandbox 
+          category: secdim-sandbox
 ```
 
 == Your Privacy and Security
 
-Your code is not send to SecDim APIs. The SARIF file rule section is parsed for relevant search terms (e.g. CWE ids), and only these search terms are queries on SecDim API. No information about the origin is sent to SecDim. 
+Your code is not send to SecDim APIs. The SARIF file rule section is parsed for relevant search terms (e.g. CWE ids), and only these search terms are queries on SecDim API. No information about the origin is sent to SecDim.
 To learn more, checkout https://github.com/secdim/sandbox-sarif-parser[SecDim Sandbox SARIF Parser] repository.
