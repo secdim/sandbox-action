@@ -1,4 +1,4 @@
-name: "SecDim Sandbox"
+name: "SecDim Secure Coding Wargame"
 description: "Parses SARIF files and enriches each finding with links to relevant SecDim Secure Coding Wargame labs where you can explore and debug your security patch."
 author: "SecDim"
 inputs:
