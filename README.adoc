@@ -1,71 +1,106 @@
-= SecDim Sandbox
+= SecDim Sandbox – The Secure Code Learning Wargame
+:toc:
+:toclevels: 2
+:sectnums:
+:icons: font
+:github-actions-badge: https://github.com/secdim/sandbox-action/workflows/SecDim%20Sandbox%20Action/badge.svg
+:version-badge: https://img.shields.io/github/v/tag/secdim/sandbox-action?label=version&color=blue
 
-SecDim Sandbox is a Cloud Development Environment where you can explore a real vulnerability in a cloud native app. Each Sandbox comes with a security test suit to simulate the exploitation of the vulnerability. This can help you to debug and verify if your security patch can remediate the vulnerability.
+image::{github-actions-badge}[]
+image::{version-badge}[]
 
-You can run, test and debug the application and get assistance from SecDim's AI powered code assistant.
+[abstract]
+SecDim Sandbox supercharges your security CI/CD by transforming static SARIF findings into interactive, containerized labs. Turn every vulnerability into a hands-on learning adventure—complete with AI-powered hints, real-world exploitation tests, and patch validation.
 
-image::images/secdim-sandbox-cloud.png[]
+.Image: SecDim Sandbox Cloud Overview
+image::images/secdim-sandbox-cloud.png[alt="SecDim Sandbox Cloud Overview"]
 
-image:images/secdim-sandbx-github-action-security-tab.png[width=49%]
-image:images/code-scanning-alert-screenshot.png[width=49%]
+[grid,cols="1,1"]
+.Image: Security Tab Integration
+image::images/secdim-sandbx-github-action-security-tab.png[alt="Security Tab Integration"]
+.Image: Augmented Alerts
+image::images/code-scanning-alert-screenshot.png[alt="Code Scanning Alerts"]
 
-== Description
+* **Instant Hands-On Labs** – Each finding links to a fully containerized demo you can spin up in seconds.
+* **Real Attacker Simulations** – Built-in tests show you exactly how bad actors exploit each flaw.
+* **AI Sidekick** – Our AI code assistant gives you context, hints, and validation feedback.
+* **Seamless Privacy** – Only minimal metadata (e.g., CWE IDs) leaves your repo; your source code stays local.
+* **Zero Config** – Works out of the box with any SARIF-producing tool (Semgrep, CodeQL, etc.).
 
-This Github Action will take a SARIF file, search https://play.secdim.com/sandbox[SecDim Sandbox] for the relevant Sandbox, and upload a new SARIF file detailing the vulnerabilities with links to the relevant https://play.secdim.com/sandbox/[SecDim Sandbox]. The results can be viewed in the repository's Security tab.
+== ✨ Key Features
+- **SARIF Enrichment**: Scans your SARIF, enriches each finding with a lab link.
+- **Catalog Lookup**: Queries the https://play.secdim.com/browse[SecDim Wargame catalog] for the best matching challenge.
+- **Security Tab Integration**: Results appear right in your repo’s Security tab.
+- **Customizable Templates**: Override lab URLs, link labels, or categories via inputs.
+- **Cross-Scanner Support**: Plug into Semgrep, CodeQL, Sonar, and many others.
 
-See an example of using this Github Action with Semgrep: https://github.com/secdim/sandbox-semgrep-example[Integrating Semgrep with SecDim Sandbox]
+== 🔧 Example Workflow
 
-An example YAML workflow file is also included below:
-
-```yaml
-name: SecDim Sandbox Example Workflow
+[source,yaml]
+----
+name: "🚨 SecDim Sandbox CI"
 on:
   push:
-    branches:
-      - master
+    branches: [ main ]
   pull_request:
+
 jobs:
-  secdim:
+  sandbox:
     runs-on: ubuntu-latest
     permissions:
       security-events: write
       actions: read
       contents: read
     steps:
-      - name: Clone repo
-        uses: actions/checkout@master
+      - name: "🔍 Checkout Code"
+        uses: actions/checkout@v2
 
-      - name: Set up Python
+      - name: "🐍 Setup Python 3.7"
         uses: actions/setup-python@v2
         with:
           python-version: "3.7"
 
-      - name: Install Semgrep
+      - name: "📦 Install Semgrep"
         run: pip install semgrep
 
-      - name: Run Semgrep
+      - name: "🚀 Run Semgrep Scan"
         run: semgrep scan --config auto --sarif > findings.sarif
 
-      - name: Upload Semgrep SARIF results
+      - name: "📤 Upload Semgrep Results"
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: findings.sarif
           category: semgrep
 
-      - name: Run SecDim Sandbox Action
+      - name: "🛡️ Enrich SARIF with SecDim Wargame"
         uses: secdim/sandbox-action@v1.0.0
         with:
           input_sarif_file: findings.sarif
           output_sarif_file: findings.processed.sarif
 
-      - name: Upload SecDim Sanbox SARIF results
+      - name: "📤 Upload Enriched SARIF"
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: findings.processed.sarif
           category: secdim-sandbox
-```
+----
 
-== Your Privacy and Security
+== 🔒 Privacy & Security
 
-Your code is not send to SecDim APIs. The SARIF file rule section is parsed for relevant search terms (e.g. CWE ids), and only these search terms are queries on SecDim API. No information about the origin is sent to SecDim.
-To learn more, checkout https://github.com/secdim/sandbox-sarif-parser[SecDim Sandbox SARIF Parser] repository.
+[NOTE]
+====
+Your source code never leaves your environment. We only parse rule metadata (e.g., CWE IDs) and send tiny search queries to SecDim APIs. All heavy lifting stays in your CI runner.
+====
+
+== 🤔 FAQ
+
+=== Do I need an account?
+Nope—access to public labs is free. For private labs or enterprise features, mailto:support@secdim.com[contact us].
+
+=== Can I tweak the action and output?
+Absolutely! Check out https://github.com/secdim/sandbox-sarif-parser[SecDim Sandbox SARIF parser]:
+
+
+== ❤️ Contributing
+
+We ❤️ pull requests! Check out the sandbox-action repo and open an issue or PR.

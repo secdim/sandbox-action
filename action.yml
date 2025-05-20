@@ -17,5 +17,5 @@ runs:
     - ${{ inputs.input_sarif_file }}
     - ${{ inputs.output_sarif_file }}
 branding:
-  icon: "box"
+  icon: "award"
   color: "blue"

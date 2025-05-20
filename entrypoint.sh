@@ -1,3 +1,3 @@
 #!/bin/sh -l
 
-sandbox $1 $2
+sandbox enrich --in $1 --out $2
