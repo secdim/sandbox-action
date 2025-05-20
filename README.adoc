@@ -1,4 +1,4 @@
-= SecDim Sandbox – The Secure Code Learning Wargame
+= SecDim Sandbox – The Secure Code Learning Wargame ⚔️
 :icons: font
 :version-badge: https://img.shields.io/github/v/tag/secdim/sandbox-action?label=version&color=blue
 

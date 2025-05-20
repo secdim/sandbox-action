@@ -1,5 +1,5 @@
-name: "SecDim Secure Coding Wargame"
-description: "Parses SARIF files and enriches each finding with links to relevant SecDim Secure Coding Wargame labs where you can explore and debug your security patch."
+name: "Secure Coding Wargame"
+description: "Turn every vulnerability into hands-on secure code learning labs."
 author: "SecDim"
 inputs:
   input_sarif_file:
