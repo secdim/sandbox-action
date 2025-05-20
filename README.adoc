@@ -1,12 +1,8 @@
 = SecDim Sandbox – The Secure Code Learning Wargame
-:toc:
-:toclevels: 1
-:sectnums:
 :icons: font
-:github-actions-badge: https://github.com/secdim/sandbox-action/workflows/SecDim%20Sandbox%20Action/badge.svg
 :version-badge: https://img.shields.io/github/v/tag/secdim/sandbox-action?label=version&color=blue
 
-image::{github-actions-badge}[]
+
 image::{version-badge}[]
 
 [abstract]
