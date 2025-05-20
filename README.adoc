@@ -69,7 +69,7 @@ jobs:
           category: semgrep
 
       - name: "🛡️ Enrich SARIF with SecDim Wargame"
-        uses: secdim/sandbox-action@v1.0.0
+        uses: secdim/sandbox-action@v2.0.0
         with:
           input_sarif_file: findings.sarif
           output_sarif_file: findings.processed.sarif
